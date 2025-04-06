@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FadeLoader } from 'react-spinners'
 import ListCard from './ListCard';
+import FeedBack from './FeedBack';
 const API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNmU3NTY1MmY4NWQ1NDZlNjNkZGFkZmU1MGU3NjU1YiIsIm5iZiI6MTc0MjE1MDY1MC40NTQwMDAyLCJzdWIiOiI2N2Q3MWJmYWViYzMwYTBiNDgwMTM3NmQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.p2Y-AAKohHDKdSLyRFDKe52NMtBLu4Uc868VM2dIgxQ"; // Replace with actual TMDb API token
 const API_KEY = '16e75652f85d546e63ddadfe50e7655b';
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -9,6 +10,8 @@ const BASE_URL = "https://api.themoviedb.org/3";
 
 const ListComponent = () => {
     const [list, setList] = useState([])
+    const [error, setError] = useState(false)
+    const [errMessage, setErrMessage] = useState("Could not fetch data")
     const [isLoading, setLoading] = useState(false)
     useEffect(()=>{
       const fetchData = async ()=>{
@@ -26,6 +29,7 @@ const ListComponent = () => {
             setList(data.results || [])
         } catch (error) {
           console.log(error.message)
+          setError(true)
         }finally{
           setLoading(false)
         }
@@ -34,6 +38,8 @@ const ListComponent = () => {
     },[])
   return (
     <section className=''>
+      {error && <FeedBack message={errMessage}/>}
+      {error && <div className='h-screen text-center flex items-center justify-center text-gray-400'>{errMessage} </div>}
        <h1 className='font-bold text-2xl p-4 text-center'>New Movie Lists</h1>
         {isLoading && <div className='flex justify-center items-center h-screen'>
             <FadeLoader color='#E50000' size={20}/>
