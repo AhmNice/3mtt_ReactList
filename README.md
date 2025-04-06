@@ -26,11 +26,12 @@ A simple movie listing page built with React and Vite, inspired by a project fro
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/your-username/3mtt-movie-app.git
-   cd 3mtt-movie-app
-   
-   npm install
-   npm run dev```
+      git clone https://github.com/your-username/3mtt-movie-app.git
+      cd 3mtt-movie-app
+      
+      npm install
+      npm run dev
+   ```
 ## 📌 Credits
 - **Inspired by the 3MTT Fullstack Software Dev Program**
 - **Movie data powered by The Movie Database (TMDb)**
